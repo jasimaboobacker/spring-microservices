@@ -1,15 +1,34 @@
 package com.giantdiplodocus.microservice.currencyexchangeservice;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 
+@Entity
 public class ExchangeValue {
 
+    @Id
+    @GeneratedValue
     private Long id;
+
+    @Column(name = "currency_from")
     private String from;
+
+    @Column(name = "currency_to")
     private String to;
+
     private BigDecimal conversionMultiple;
+
+    @JsonIgnore
     private int port;
 
+    public ExchangeValue() {
+    }
 
     public ExchangeValue(Long id, String from, String to, BigDecimal conversionMultiple) {
         this.id = id;
